@@ -21,12 +21,9 @@ class GenusController extends Controller
      */
     public function showAction($genusName): Response
     {
-        $templating = $this->container->get('templating');
-        $html = $templating->render('genus/show.html.twig', [
+        return $this->render('genus/show.html.twig', [
             'name' => $genusName,
             'chirulao' => 'Chirulao',
         ]);
-
-        return new Response($html);
     }
 }
