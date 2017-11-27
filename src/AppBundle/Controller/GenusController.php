@@ -29,9 +29,8 @@ class GenusController extends Controller
         ];
 
         return $this->render('genus/show.html.twig', [
-            'name'     => $genusName,
-            'chirulao' => 'Chirulao',
-            'notes'    => $notes,
+            'name'  => $genusName,
+            'notes' => $notes,
         ]);
     }
 }
