@@ -13,7 +13,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
 
 class GenusController extends Controller
@@ -23,14 +22,13 @@ class GenusController extends Controller
      */
     public function showAction($genusName)
     {
-
         return $this->render('genus/show.html.twig', [
             'name' => $genusName,
         ]);
     }
 
     /**
-     * @Route("/genus/{genusName}/notes")
+     * @Route("/genus/{genusName}/notes", name="genus_show_notes")
      * @Method("GET")
      */
     public function getNotesAction()
