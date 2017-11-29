@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -17,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
+            new DoctrineCacheBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

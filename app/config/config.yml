@@ -38,7 +38,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     number_format:
-        thousands_separator:
+        thousands_separator: '.'
 
 # Doctrine Configurationq
 doctrine:
@@ -69,3 +69,8 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+doctrine_cache:
+    providers:
+        markdown_cache:
+            type: file_system
