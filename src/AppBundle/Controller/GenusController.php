@@ -36,9 +36,6 @@ class GenusController extends Controller
             $cache->save($key, $funFact);
         }
 
-        $funFact = $this->get('markdown.parser')
-            ->transform($funFact);
-
         return $this->render('genus/show.html.twig', [
             'funFact' => $funFact,
             'name'    => $genusName,
