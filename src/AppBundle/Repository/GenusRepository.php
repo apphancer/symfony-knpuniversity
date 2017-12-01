@@ -19,4 +19,18 @@ class GenusRepository extends EntityRepository
             ->getQuery()
             ->execute();
     }
+
+    /**
+     * @return Genus[]
+     */
+    public function findAllByPublishedOrderedByRecentlyActive()
+    {
+        return $this->createQueryBuilder('genus')
+            ->andWhere('genus.isPublished = :isPublished')
+            ->setParameter('isPublished', true)
+            ->leftJoin('genus.notes', 'genus_note')
+            ->addOrderBy('genus_note.createdAt', 'DESC ')
+            ->getQuery()
+            ->execute();
+    }
 }
