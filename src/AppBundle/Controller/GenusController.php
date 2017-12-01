@@ -71,7 +71,7 @@ class GenusController extends Controller
         $genus = $em->getRepository('AppBundle:Genus')
             ->findOneBy(['name' => $genusName]);
 
-        if(!$genus)
+        if (!$genus)
         {
             throw $this->createNotFoundException('No Genus found');
         }
@@ -99,11 +99,25 @@ class GenusController extends Controller
     }
 
     /**
-     * @Route("/genus/{genusName}/notes", name="genus_show_notes")
+     * @Route("/genus/{name}/notes", name="genus_show_notes")
      * @Method("GET")
      */
-    public function getNotesAction()
+    public function getNotesAction(Genus $genus)
     {
+
+        // we could use the Entity Manager and query like normale, or....
+        // use parameter conversion
+        // in this case we are passing {name} in the route /genus/{name}/notes
+        // {name} matches the db table column name
+
+        // dump($genus);
+
+        // genus_repository->findBy(['genus'=>$genus]); or to be even lazier....
+        foreach ($genus->getNotes() as $note)
+        {
+            dump($note);
+        }
+
         $notes = [
             ['id' => 1, 'username' => 'AquaPelham', 'avatarUri' => '/images/leanna.jpeg', 'note' => 'Octopus asked me a riddle, outsmarted me', 'date' => 'Dec. 10, 2015'],
             ['id' => 2, 'username' => 'AquaWeaver', 'avatarUri' => '/images/ryan.jpeg', 'note' => 'I counted 8 legs... as they wrapped around me', 'date' => 'Dec. 1, 2015'],
