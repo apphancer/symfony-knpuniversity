@@ -4,4 +4,11 @@ AppBundle\Entity\Genus:
         subFamily: <text(20)>
         speciesCount: <numberBetween(100, 100000)>
         funFact: <sentence()>
-        isPublished: <boolean(75)>
+        isPublished: <boolean(75)> #75% will be set to true
+
+AppBundle\Entity\GenusNote:
+    genus.note_{1..10}:
+        username: <userName()>
+        userAvatarFilename:  '50%? leanna.jpeg : ryan.jpeg'
+        note:  <paragraph()>
+        createdAt:  <dateTimeBetween('-6 months', 'now')>
