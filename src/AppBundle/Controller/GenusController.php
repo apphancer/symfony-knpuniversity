@@ -93,8 +93,19 @@ class GenusController extends Controller
        }
        */
 
+        // slow solution
+        $recentNotes = $genus->getNotes()
+            ->filter(function (GenusNote $note) {
+                return $note->getCreatedAt() > new DateTime('-3 months');
+            });
+
+        // faster solution
+        $recentNotes = $em->getRepository('AppBundle:GenusNote')
+            ->findAllRecentNotesForGenus($genus);
+
         return $this->render('genus/show.html.twig', [
-            'genus' => $genus,
+            'genus'           => $genus,
+            'recentNoteCount' => count($recentNotes),
         ]);
     }
 
