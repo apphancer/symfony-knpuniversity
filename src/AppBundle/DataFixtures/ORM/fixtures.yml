@@ -7,7 +7,7 @@ AppBundle\Entity\Genus:
         isPublished: <boolean(75)> #75% will be set to true
 
 AppBundle\Entity\GenusNote:
-    genus.note_{1..10}:
+    genus.note_{1..100}:
         username: <userName()>
         userAvatarFilename:  '50%? leanna.jpeg : ryan.jpeg'
         note:  <paragraph()>
