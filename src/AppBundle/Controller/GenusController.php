@@ -94,9 +94,16 @@ class GenusController extends Controller
        }
        */
 
+
+        // Option 1;
         $transformer = new MarkdownTransformer(
             $this->get('markdown.parser')
         );
+
+        // Option 2:
+        // Get Transformer as a service added to the container
+        $transformer = $this->get('app.markdown_transformer');
+
         $funFact = $transformer->parse($genus->getFunFact());
 
         // slow solution
