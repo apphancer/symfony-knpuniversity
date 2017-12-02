@@ -108,7 +108,7 @@ class Genus
      */
     public function getFunFact()
     {
-        return $this->funFact;
+        return '**CHIRULAO** ' . $this->funFact;
     }
 
     /**
