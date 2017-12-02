@@ -77,27 +77,10 @@ class GenusController extends Controller
             throw $this->createNotFoundException('No Genus found');
         }
 
-        /*
-       $funFact = 'Octopuses can change the color of their body in just *three-tenths* of a second!';
-       $cache = $this->get('doctrine_cache.providers.markdown_cache');
-       $key = md5($funFact);
-
-       if ($cache->contains($key))
-       {
-           $funFact = $cache->fetch($key);
-       } else
-       {
-           sleep(1); // fake how slow this could be
-           $funFact = $this->get('markdown.parser')
-               ->transform($funFact);
-           $cache->save($key, $funFact);
-       }
-       */
-
-
         // Option 1;
         $transformer = new MarkdownTransformer(
-            $this->get('markdown.parser')
+            $this->get('markdown.parser'),
+            $this->get('doctrine_cache.providers.markdown_cache')
         );
 
         // Option 2:
