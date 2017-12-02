@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Genus;
 use AppBundle\Entity\GenusNote;
+use AppBundle\Service\MarkdownTransformer;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -93,6 +94,9 @@ class GenusController extends Controller
        }
        */
 
+        $transformer = new MarkdownTransformer();
+        $funFact = $transformer->parse($genus->getFunFact());
+
         // slow solution
         $recentNotes = $genus->getNotes()
             ->filter(function (GenusNote $note) {
@@ -106,6 +110,7 @@ class GenusController extends Controller
         return $this->render('genus/show.html.twig', [
             'genus'           => $genus,
             'recentNoteCount' => count($recentNotes),
+            'funFact'         => $funFact,
         ]);
     }
 
