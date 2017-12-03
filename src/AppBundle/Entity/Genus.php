@@ -87,6 +87,14 @@ class Genus
     }
 
     /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $funFact;
@@ -144,7 +152,7 @@ class Genus
      */
     public function getFunFact()
     {
-        return '**CHIRULAO** ' . $this->funFact;
+        return $this->funFact;
     }
 
     /**
