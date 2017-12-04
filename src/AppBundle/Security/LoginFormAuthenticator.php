@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
@@ -53,6 +54,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         $form->handleRequest($request);
         $data = $form->getData();
 
+        $request->getSession()->set(
+            Security::LAST_USERNAME,
+            $data['_username']
+        );
+
         return $data;
     }
 
@@ -92,7 +98,8 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         // the URL they were on, and probably where you want to redirect to
         $targetPath = $this->getTargetPath($request->getSession(), $providerKey);
 
-        if (!$targetPath) {
+        if (!$targetPath)
+        {
             $targetPath = $this->router->generate('homepage');
         }
 
