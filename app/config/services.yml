@@ -37,6 +37,10 @@ services:
     AppBundle\Twig\MarkdownExtension:
         #arguments: ['@app.markdown_transformer']
 
+    AppBundle\Security\LoginFormAuthenticator:
+        # autowire: true
+
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
