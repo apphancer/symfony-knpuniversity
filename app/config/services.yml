@@ -40,6 +40,10 @@ services:
     AppBundle\Security\LoginFormAuthenticator:
         # autowire: true
 
+    AppBundle\Doctrine\HashPasswordListener:
+        tags:
+            - { name: doctrine.event_subscriber }
+
 
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
