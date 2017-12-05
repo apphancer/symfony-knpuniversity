@@ -23,5 +23,5 @@ AppBundle\Entity\SubFamily:
 AppBundle\Entity\User:
     user_{1..10}:
         # use some fake data for this
-        email: martin+<current()>@apphancer.com
+        email: martin+<current()>@martin.com
         plainPassword: iliketurtles
