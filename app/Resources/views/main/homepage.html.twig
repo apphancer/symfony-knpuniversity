@@ -1,4 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1>Welcome! </h1>
+    <h1>Welcome
+    {{ app.user ? app.user.email : 'Aquanauts' }}!
+    </h1>
 {% endblock %}
