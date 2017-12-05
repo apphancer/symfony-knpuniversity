@@ -26,6 +26,14 @@ class UserController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Welcome '.$user->getEmail());
+
+            return $this->get('security.authentication.guard_handler')
+                ->authenticateUserAndHandleSuccess(
+                    $user,
+                    $request,
+                    $this->get('AppBundle\Security\LoginFormAuthenticator'),
+                    'main'
+                );
             return $this->redirectToRoute('homepage');
         }
 
