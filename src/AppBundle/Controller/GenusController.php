@@ -64,7 +64,7 @@ class GenusController extends Controller
     /**
      * @Route("/genus/{genusName}", name="genus_show")
      */
-    public function showAction($genusName)
+    public function showAction(Genus $genus, MarkdownTransformer $markdownTransformer)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -78,16 +78,18 @@ class GenusController extends Controller
         }
 
         // Option 1;
+        /*
         $transformer = new MarkdownTransformer(
             $this->get('markdown.parser'),
             $this->get('doctrine_cache.providers.markdown_cache')
         );
+        */
 
         // Option 2:
         // Get Transformer as a service added to the container
-        $transformer = $this->get('app.markdown_transformer');
+        //$transformer = $this->get(MarkdownTransformer::class);
 
-        $funFact = $transformer->parse($genus->getFunFact());
+        $funFact = $markdownTransformer->parse($genus->getFunFact());
 
         // slow solution
         $recentNotes = $genus->getNotes()

@@ -6,7 +6,6 @@ namespace AppBundle\Service;
 
 use Doctrine\Common\Cache\Cache;
 use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
-use function strtoupper;
 
 class MarkdownTransformer
 {

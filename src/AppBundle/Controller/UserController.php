@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\UserRegistrationForm;
+use AppBundle\Security\LoginFormAuthenticator;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class UserController extends Controller
                 ->authenticateUserAndHandleSuccess(
                     $user,
                     $request,
-                    $this->get('AppBundle\Security\LoginFormAuthenticator'),
+                    $this->get(LoginFormAuthenticator::class),
                     'main'
                 );
             return $this->redirectToRoute('homepage');
