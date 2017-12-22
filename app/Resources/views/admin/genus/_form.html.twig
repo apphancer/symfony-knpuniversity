@@ -19,7 +19,21 @@
     {{ form_row(genusForm.isPublished, {
         help: 'Should this genus be shown on the site?'
     }) }}
-    {{ form_row(genusForm.firstDiscoveredAt) }}
+    {{ form_label(genusForm.firstDiscoveredAt) }}
+    {{ form_errors(genusForm.firstDiscoveredAt) }}
+
+    {{ form_label(genusForm.firstDiscoveredAt.year) }}
+    {% do genusForm.firstDiscoveredAt.year.setRendered() %}
+    <select id="{{ genusForm.firstDiscoveredAt.year.vars.id }}"
+            name="{{ genusForm.firstDiscoveredAt.year.vars.full_name }}">
+        {% for choice in genusForm.firstDiscoveredAt.year.vars.choices %}
+            <option value="{{ choice.value }}" {{ choice.value == genusForm.firstDiscoveredAt.year.vars.data ? 'selected' : '' }}>{{ choice.label }}</option>
+        {% endfor %}
+    </select>
+    {{ form_errors(genusForm.firstDiscoveredAt.year) }}
+
+    {{ form_row(genusForm.firstDiscoveredAt.month) }}
+    {{ form_row(genusForm.firstDiscoveredAt.day) }}
 
     {{ form_widget(genusForm) }}
     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
