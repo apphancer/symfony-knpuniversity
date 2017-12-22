@@ -1,14 +1,24 @@
 {{ form_start(genusForm) }}
 
-                {{ form_row(genusForm.name) }}
-                {{ form_row(genusForm.subFamily) }}
-                {{ form_row(genusForm.speciesCount, {
-                    'label' : 'Number of species'
-                }) }}
-                {{ form_row(genusForm.funFact) }}
-                {{ form_row(genusForm.isPublished) }}
-                {{ form_row(genusForm.firstDiscoveredAt) }}
+    {{ form_errors(genusForm) }}
 
-                {{ form_widget(genusForm) }}
-<button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+    {{ form_row(genusForm.name) }}
+
+    {{ form_row(genusForm.subFamily, {
+        label: 'Taxonomic Subfamily',
+        attr: {
+            class: 'foo',
+        },
+        placeholder: 'Select a subfamily'
+    }) }}
+
+    {{ form_row(genusForm.speciesCount, {
+        'label' : 'Number of species'
+    }) }} 
+    {{ form_row(genusForm.funFact) }}
+    {{ form_row(genusForm.isPublished) }}
+    {{ form_row(genusForm.firstDiscoveredAt) }}
+
+    {{ form_widget(genusForm) }}
+    <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
 {{ form_end(genusForm) }}
