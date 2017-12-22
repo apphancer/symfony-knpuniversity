@@ -42,6 +42,11 @@ services:
         tags:
             - { name: doctrine.event_subscriber }
 
+    AppBundle\Form\TypeExtension\HelpFormExtension:
+        autowire: true
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
 
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
