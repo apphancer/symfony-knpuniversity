@@ -73,6 +73,12 @@ class Genus
     private $notes;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\JoinTable(name="genus_scientist")
+     */
+    private $genusScientists;
+
+    /**
      * @return mixed
      */
     public function getFirstDiscoveredAt()
@@ -91,6 +97,7 @@ class Genus
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->genusScientists = new ArrayCollection();
     }
 
     /**
@@ -172,7 +179,7 @@ class Genus
 
     public function getUpdatedAt()
     {
-        return new \DateTime('-'.rand(0, 100).' days');
+        return new \DateTime('-' . rand(0, 100) . ' days');
     }
 
     /**
