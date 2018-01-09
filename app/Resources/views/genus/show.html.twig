@@ -24,10 +24,17 @@
                 <dd>
                     <ul class="list-group">
                         {% for genusScientist in genus.genusScientists %}
-                            <li class="list-group-item">
+                            <li class="list-group-item js-scientist-item">
                                 <a href="{{ path('user_show', {
                                     'id': genusScientist.id
                                 }) }}">- {{ genusScientist.fullName }}</a>
+
+                                <a href="#" class="btn btn-link btn-xs pull-right js-remove-scientist-user" data-url="{{ path('genus_scientist_remove', {
+                                    genusId: genus.id,
+                                    userId: genusScientist.id
+                                }) }}">
+                                    <span class="fa fa-close"></span>
+                                </a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -52,5 +59,27 @@
                 <NoteSection url={notesUrl}/>,
             document.getElementById('js-notes-wrapper')
         );
+    </script>
+
+    <script>
+        jQuery(document).ready(function() {
+            $('.js-remove-scientist-user').on('click', function(e)
+            {
+                e.preventDefault();
+
+                var $el = $(this).closest('.js-scientist-item');
+                $(this).find('.fa-close')
+                    .removeClass('fa-close')
+                    .addClass('fa-spinner')
+                    .addClass('fa-spin');
+
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'DELETE'
+                }).done(function() {
+                    $el.fadeOut();
+                });
+            })
+        })
     </script>
 {% endblock %}
