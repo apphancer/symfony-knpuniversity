@@ -64,7 +64,7 @@ class GenusController extends Controller
     /**
      * @Route("/genus/{genusName}", name="genus_show")
      */
-    public function showAction(Genus $genus, MarkdownTransformer $markdownTransformer)
+    public function showAction($genusName, MarkdownTransformer $markdownTransformer)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -92,10 +92,12 @@ class GenusController extends Controller
         $funFact = $markdownTransformer->parse($genus->getFunFact());
 
         // slow solution
+        /*
         $recentNotes = $genus->getNotes()
             ->filter(function (GenusNote $note) {
                 return $note->getCreatedAt() > new DateTime('-3 months');
             });
+        */
 
         // faster solution
         $recentNotes = $em->getRepository('AppBundle:GenusNote')
