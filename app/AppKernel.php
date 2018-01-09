@@ -1,6 +1,7 @@
 <?php
 
 use Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle;
+use Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -19,7 +20,8 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-            new DoctrineCacheBundle()
+            new DoctrineCacheBundle(),
+            new StofDoctrineExtensionsBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
