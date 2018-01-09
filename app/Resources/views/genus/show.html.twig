@@ -5,7 +5,7 @@
 {% block body %}
     <h2 class="genus-name">{{ genus.name }}</h2>
 
-    <p><a href="/genus/{{ path('genus_show_notes', {'name' : genus.name}) }}">JSON notes</a></p>
+    <p><a href="/genus/{{ path('genus_show_notes', {'slug' : genus.slug}) }}">JSON notes</a></p>
 
     <div class="sea-creature-container">
         <div class="genus-photo"></div>
@@ -33,7 +33,7 @@
     <script type="text/babel" src="{{ asset('js/notes.react.js') }}"></script>
 
     <script type="text/babel">
-        var notesUrl = '{{ path('genus_show_notes', {'name' : genus.name}) }}';
+        var notesUrl = '{{ path('genus_show_notes', {'slug' : genus.slug}) }}';
 
         ReactDOM.render(
                 <NoteSection url={notesUrl}/>,

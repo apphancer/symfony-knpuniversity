@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Response;
 class GenusController extends Controller
 {
     /**
-     * @Route("/genus/new ")
+     * @Route("/genus/new")
      */
     public function newAction()
     {
@@ -62,20 +62,12 @@ class GenusController extends Controller
     }
 
     /**
-     * @Route("/genus/{genusName}", name="genus_show")
+     * @Route("/genus/{slug}", name="genus_show")
      */
-    public function showAction($genusName, MarkdownTransformer $markdownTransformer)
+    public function showAction(Genus $genus, MarkdownTransformer $markdownTransformer)
     {
 
         $em = $this->getDoctrine()->getManager();
-
-        $genus = $em->getRepository('AppBundle:Genus')
-            ->findOneBy(['name' => $genusName]);
-
-        if (!$genus)
-        {
-            throw $this->createNotFoundException('No Genus found');
-        }
 
         // Option 1;
         /*
@@ -99,6 +91,9 @@ class GenusController extends Controller
             });
         */
 
+        $this->get('logger')
+            ->info('Showing genus:'.$genus->getName());
+
         // faster solution
         $recentNotes = $em->getRepository('AppBundle:GenusNote')
             ->findAllRecentNotesForGenus($genus);
@@ -111,7 +106,7 @@ class GenusController extends Controller
     }
 
     /**
-     * @Route("/genus/{name}/notes", name="genus_show_notes")
+     * @Route("/genus/{slug}/notes", name="genus_show_notes")
      * @Method("GET")
      */
     public function getNotesAction(Genus $genus)
