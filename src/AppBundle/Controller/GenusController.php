@@ -46,7 +46,7 @@ class GenusController extends Controller
         $genusNote->setGenus($genus);
 
         $user = $em->getRepository('AppBundle:User')
-            ->findOneBy(['email' => 'martin+1@martin.com']);
+            ->findOneBy(['email' => 'aquanaut1@example.org']);
         $genus->addGenusScientist($user);
         $genus->addGenusScientist($user);
 
