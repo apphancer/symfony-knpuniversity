@@ -4,10 +4,17 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="genus_scientist")
+ * @UniqueEntity(
+ *     fields={"genus", "user"},
+ *     message="This user is already studying this genus",
+ *     errorPath="user"
+ * )
  */
 class GenusScientist
 {
@@ -33,6 +40,7 @@ class GenusScientist
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     private $yearsStudied;
 
