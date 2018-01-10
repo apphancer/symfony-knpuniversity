@@ -3,7 +3,9 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\SubFamily;
+use AppBundle\Entity\User;
 use AppBundle\Repository\SubFamilyRepository;
+use AppBundle\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -49,6 +51,15 @@ class GenusFormType extends AbstractType
                     'class' => 'js-datepicker',
                 ],
                 'html5'  => false,
+            ])
+            ->add('genusScientists', EntityType::class, [
+                'class'    => User::class,
+                'multiple' => true,
+                'expanded' => true,
+                'choice_label' => 'email',
+                'query_builder' => function(UserRepository $repository) {
+                    return $repository->createIsScientistQueryBuilder();
+                }
             ]);
     }
 

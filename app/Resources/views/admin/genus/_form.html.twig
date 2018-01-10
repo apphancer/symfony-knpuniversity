@@ -20,6 +20,7 @@
         help: 'Should this genus be shown on the site?'
     }) }}
     {{ form_row(genusForm.firstDiscoveredAt) }}
+    {{ form_row(genusForm.genusScientists) }}
 
     {{ form_widget(genusForm) }}
     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
