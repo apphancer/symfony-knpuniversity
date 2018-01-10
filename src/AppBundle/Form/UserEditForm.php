@@ -27,6 +27,7 @@ class UserEditForm extends AbstractType
                 'multiple'     => true,
                 'expanded'     => true,
                 'choice_label' => 'name',
+                'by_reference' => false,
             ]);
     }
 
