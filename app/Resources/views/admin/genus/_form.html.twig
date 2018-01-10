@@ -6,7 +6,13 @@
             <span class="fa fa-close"></span>
         </a>
         {{ form_errors(genusScientistForm) }}
-        {{ form_row(genusScientistForm.user) }}
+
+        {% if genusScientistForm.user is defined %}
+            {{ form_row(genusScientistForm.user) }}
+        {% else %}
+            <strong>{{ genusScientistForm.vars.data.user.email }}</strong>
+        {% endif %}
+
         {{ form_row(genusScientistForm.yearsStudied) }}
     </div>
 {% endmacro %}
@@ -47,7 +53,7 @@
         </div>
 
     {# prevents weird labels from showing up #}
-    
     {{ form_widget(genusForm.genusScientists) }}
+
     <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
 {{ form_end(genusForm) }}

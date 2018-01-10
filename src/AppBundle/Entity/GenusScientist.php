@@ -39,7 +39,7 @@ class GenusScientist
     private $user;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      */
     private $yearsStudied;

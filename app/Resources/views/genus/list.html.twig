@@ -17,7 +17,7 @@
                         'slug': genus.slug
                     }) }}">{{ genus.name }}</a></td>
                 <td>{{ genus.speciesCount }}</td>
-                <td>{{ genus.genusScientists|length }}</td>
+                <td>{{ genus.genusScientists|length }} ({{ genus.expertScientists|length }} experts)</td>
                 <td>{{ genus.updatedAt|date('Y-m-d')  }}</td>
         {% endfor %}
         </tbody>
