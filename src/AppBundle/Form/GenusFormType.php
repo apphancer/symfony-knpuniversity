@@ -56,7 +56,8 @@ class GenusFormType extends AbstractType
             ->add('genusScientists', CollectionType::class, [
                 'entry_type'   => GenusScientistEmbeddedForm::class,
                 'allow_delete' => true,
-                'by_reference' => false
+                'allow_add'    => true,
+                'by_reference' => false,
             ]);
     }
 

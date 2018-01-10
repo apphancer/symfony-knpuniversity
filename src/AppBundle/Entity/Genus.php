@@ -77,7 +77,8 @@ class Genus
      *     targetEntity="AppBundle\Entity\GenusScientist",
      *     mappedBy="genus",
      *     fetch="EXTRA_LAZY",
-     *     orphanRemoval=true
+     *     orphanRemoval=true,
+     *     cascade={"persist"}
      * )
      */
     private $genusScientists;
@@ -218,16 +219,16 @@ class Genus
         $this->slug = $slug;
     }
 
-    public function addGenusScientist(User $user)
+    public function addGenusScientist(GenusScientist $genusScientist)
     {
-        if ($this->genusScientists->contains($user))
+        if ($this->genusScientists->contains($genusScientist))
         {
             return;
         }
-        $this->genusScientists[] = $user;
+        $this->genusScientists[] = $genusScientist;
 
-        // not needed for persistence, just keeping both sides in sync
-        $user->addStudiedGenus($this);
+        // needed to update the owning side of the relationship!
+        $genusScientist->setGenus($this);
     }
 
     public function removeGenusScientist(GenusScientist $genusScientist)
