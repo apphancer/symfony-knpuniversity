@@ -26,7 +26,7 @@ class GenusScientist
     private $genus;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="studiedGenuses")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
