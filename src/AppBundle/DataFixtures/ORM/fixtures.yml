@@ -7,7 +7,7 @@ AppBundle\Entity\Genus:
         isPublished: <boolean(75)>
         firstDiscoveredAt: <dateTimeBetween('-200 years', 'now')>
         #genusScientists: ['@user.aquanaut_1', '@user.aquanaut_5']
-        genusScientists: '3x @user.aquanaut_*'
+        #genusScientists: '3x @user.aquanaut_*'
 
 AppBundle\Entity\GenusNote:
     genus.note_{1..100}:
@@ -37,3 +37,9 @@ AppBundle\Entity\User:
             lastName: <lastName()>
             universityName: <company()> University
             avatarUri: <imageUrl(100, 100, 'abstract')>
+
+AppBundle\Entity\GenusScientist:
+    genus.scientist_{1..50}:
+        user: '@user.aquanaut_*'
+        genus: '@genus_*'
+        yearsStudied: <numberBetween(1, 30)>
